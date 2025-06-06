@@ -25,18 +25,18 @@ var lossesEl = document.getElementById('losses')
 var wins = 0
 var losses = 0
 
-// storing already guessed letters
-var guessedList = [];
+var maxGuesses = 10
 
-
+// starting the game
+function wordStart() {
+  var wordLength = wordStart.length;
+  
+}
 
 // access user's keypress
 document.onekeyup = function(e) {
   console.log(e.key) 
 }
-
-
-
 
 
 
@@ -46,14 +46,15 @@ document.onekeyup = function(e) {
   console.log(selectedWord);
 
   // place in #word-to-guess element with letter replaced with underscores
-    document.getElementById('wordToGuess').textContent = 
+    document.getElementById('wordToGuess').textContent = "_"
 
   // game should display ten remaining guesses in #remaining-guesses element
-  // user presses a letter key
 
-  // code checks whether the letter is included in the word, if letter is included, replace underscores in displayed word with the instances of that letter
+
+  // user presses a letter key code checks whether the letter is included in the word, if letter is included, replace underscores in displayed word with the instances of that letter
     if letter is included, then replace underscore with correct letter
   
+    if (wordToGuess === )
 
   // if letter is not included, #word-to-guess element remains unchanged
   // an incorrectly-guessed letter should be added to #incorrect-letter element
