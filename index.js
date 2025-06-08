@@ -93,8 +93,8 @@ document.onekeyup = function(e) {
 // game should display ten remaining guesses in #remaining-guesses element - with textContent code? 
 // user presses a letter key code checks whether the letter is included in the word, if letter is included, replace underscores in displayed word with the instances of that letter
 // if letter is not included, #word-to-guess element remains unchanged
-// an incorrectly-guessed letter should be added to #incorrect-letter element - added code for else - 
-// #remaining-guess element will refelct one fewer remaining guesses
-// when user compeletes a word, count a win and display a 1 in #wins element
+// an incorrectly-guessed letter should be added to #incorrect-letter element - added code for else = added with .push and .join
+// #remaining-guess element will refelct one fewer remaining guesses = code - losses++
+// when user compeletes a word, count a win and display a 1 in #wins element = code - wins++
 // game proceeds to next randomly-chosen word and reset all elements
   // #previous-word will show last guessed word
