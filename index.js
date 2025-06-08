@@ -26,49 +26,74 @@ var incorrectLetters = [];
 var currentWord = '';
 var displayWord = '';
 var remainingGuesses = 10;
-var incorrectLetters = [];
 var wins = 0;
 var losses = 0;
-var previousWord;
+var previousWord = '';
 
 
 // starting the game
 function wordStart() {
-  previousWordEl.textContent = previousWord;
-  const randomIndex = Math.floor(Math.random() * words.length);
-  currentWord = words[randomIndex];
-  displayWord = '_'.repeat(currentWord.length);
+  currentWord = words[Math.floor(Math.random() * words.length)];
+  displayWord = Array(currentWord.length).fill('_');
   incorrectLetters =[]
   remainingGuesses = 10;
+  wordToGuessEl.textContent = displayWord,join('');
+  incorrectLettersDisplay.textContent = '';
+  remainingGuessesDisplay.textContent = remainingGuesses;
+  winsDisplay.textContent = wins;
+  lossesDisplay.textContent = losses;
+  previousWordDisplay.textContent = '';
 
 }
+
 
 //access user key function
 document.onekeyup = function(e) {
-  var key = e.key.toLowerCase();
-  console.log(e.key)
-  if (!wordToGuessEl.matches(!/^[a-z]$/)) return;
-  if (displayedWord.includes(key) || incorrectLetters.includes(key)) return;
+  var letter = e.key.toLowerCase();
+  if (!letter.match(/^[a-z]$/)) return;
 
-  if (currentWord.includes(key)) {
+  if (displayWord.included(letter) || incorrectLetters.includes(letter)) return;
+
+  if (currentWord.includes(letter)) {
+    for (let i = 0; i < currentWord.length; i++) {
+      if (currentWord[i] === letter) {
+        displayWord[i] = letter;
+      }
+    }
+    wordToGuess.textContent = displayWord.join('');
     
-  } else {
-    incorrectLetters.push(key);
-    incorrectLettersEl.textContent = incorrectLetters.join('. ');
-    remainingGuesses--;
-    remainingGuessesEl.textContent = remainingGuesses;
+    if (!displayWord.includes('_')) {
+      wins++;
+      winsDisplay.textContent = wins;
+      previousWordDisplay.textContent = currentWord;
+      startGame();
+
+    }
+    } else {
+      incorrectLetters.push(letter);
+      incorrectLettersDisplay.textContent = incorrectLetters.join(',');
+      remainingGuesses--;
+      remainingGuessesDisplay.textContent = remainingGuesses;
+
+      if (remainingGuesses === 0) {
+        losses++;
+        lossesDisplay.textContent = losses;
+        previousWordDisplay.textContent = currentWord;
+        startGame();
+      }
+    }
+
   }
- 
-}
 
 
-// access user's keypress
-// select a word from words list at random
-// place in #word-to-guess element with letter replaced with underscores
-// game should display ten remaining guesses in #remaining-guesses element
+
+// access user's keypress - with onekeyup function
+// select a word from words list at random - with randomindex?
+// place in #word-to-guess element with letter replaced with underscores 
+// game should display ten remaining guesses in #remaining-guesses element - with textContent code? 
 // user presses a letter key code checks whether the letter is included in the word, if letter is included, replace underscores in displayed word with the instances of that letter
 // if letter is not included, #word-to-guess element remains unchanged
-// an incorrectly-guessed letter should be added to #incorrect-letter element
+// an incorrectly-guessed letter should be added to #incorrect-letter element - added code for else - 
 // #remaining-guess element will refelct one fewer remaining guesses
 // when user compeletes a word, count a win and display a 1 in #wins element
 // game proceeds to next randomly-chosen word and reset all elements
