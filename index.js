@@ -37,22 +37,21 @@ function wordStart() {
   displayWord = Array(currentWord.length).fill('_');
   incorrectLetters =[]
   remainingGuesses = 10;
-  wordToGuessEl.textContent = displayWord,join('');
-  incorrectLettersDisplay.textContent = '';
-  remainingGuessesDisplay.textContent = remainingGuesses;
-  winsDisplay.textContent = wins;
-  lossesDisplay.textContent = losses;
-  previousWordDisplay.textContent = '';
-
+  wordToGuessEl.textContent = displayWord.join('');
+  incorrectLettersEl.textContent = '';
+  remainingGuessesEl.textContent = remainingGuesses;
+  winsEl.textContent = wins;
+  lossesEl.textContent = losses;
 }
+wordStart();
 
 
 //access user key function
-document.onekeyup = function(e) {
+document.onkeyup = function(e) {
   var letter = e.key.toLowerCase();
   if (!letter.match(/^[a-z]$/)) return;
 
-  if (displayWord.included(letter) || incorrectLetters.includes(letter)) return;
+  if (displayWord.includes(letter) || incorrectLetters.includes(letter)) return;
 
   if (currentWord.includes(letter)) {
     for (let i = 0; i < currentWord.length; i++) {
@@ -60,26 +59,26 @@ document.onekeyup = function(e) {
         displayWord[i] = letter;
       }
     }
-    wordToGuess.textContent = displayWord.join('');
+    wordToGuessEl.textContent = displayWord.join('');
     
     if (!displayWord.includes('_')) {
       wins++;
-      winsDisplay.textContent = wins;
-      previousWordDisplay.textContent = currentWord;
-      startGame();
+      winsEl.textContent = wins;
+      previousWordEl.textContent = currentWord;
+      wordStart();
 
     }
     } else {
       incorrectLetters.push(letter);
-      incorrectLettersDisplay.textContent = incorrectLetters.join(',');
+      incorrectLettersEl.textContent = incorrectLetters.join(',');
       remainingGuesses--;
-      remainingGuessesDisplay.textContent = remainingGuesses;
+      remainingGuessesEl.textContent = remainingGuesses;
 
       if (remainingGuesses === 0) {
         losses++;
-        lossesDisplay.textContent = losses;
-        previousWordDisplay.textContent = currentWord;
-        startGame();
+        lossesEl.textContent = losses;
+        previousWordEl.textContent = currentWord;
+        wordStart();
       }
     }
 
